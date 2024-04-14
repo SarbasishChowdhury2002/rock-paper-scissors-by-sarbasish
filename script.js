@@ -1,3 +1,4 @@
+
 let userScore = 0;
 let compScore = 0;
 
@@ -15,7 +16,7 @@ const getCompChoice = () => {
 
 const gameDraw = () => {
     console.log("It's Draw");
-    msg.innerText = "It's Draw! Play again."
+    msg.innerText = "It's Draw! Play next move."
     msg.style.backgroundColor = "black";
 }
 
@@ -24,14 +25,26 @@ const showWinner = (userWin, userChoice, compChoice) => {
         console.log("You Win!");
         userScore++;
         userScorePara.innerText = userScore;
-        msg.innerText = `Wow! You Win! Your ${userChoice} beats ${compChoice}`;
+        if (userScore === 5) {
+            msg.innerText = "Congratulations! You win the game!";
+            disableChoices();
+            showPlayAgain();
+        } else {
+            msg.innerText = `Wow! You Win! Your ${userChoice} beats ${compChoice}`;
+        }
         msg.style.backgroundColor = "green";
     }
     else {
         console.log("You Lose!");
         compScore++;
         compScorePara.innerText = compScore;
-        msg.innerText = `Oops! You Lose! Comp Win! ${compChoice} beats your ${userChoice}`;
+        if (compScore === 5) {
+            msg.innerText = "Oops! You lose the game! Better luck next time!";
+            disableChoices();
+            showPlayAgain();
+        } else {
+            msg.innerText = `Oops! You Lose! Comp Win! ${compChoice} beats your ${userChoice}`;
+        }
         msg.style.backgroundColor = "red";
     }
 }
@@ -55,6 +68,41 @@ const playGame = (userChoice) => {
             userWin = (compChoice === "rock") ? false : true;
         }
         showWinner(userWin, userChoice, compChoice);
+    }
+}
+
+const disableChoices = () => {
+    choices.forEach(choice => {
+        choice.style.pointerEvents = "none";
+    });
+}
+
+const showPlayAgain = () => {
+    const playAgainBtn = document.createElement("button");
+    playAgainBtn.innerText = "Play Again";
+    playAgainBtn.classList.add("play-again-btn");
+    const msgContainer = document.querySelector(".msg-container");
+    msgContainer.appendChild(playAgainBtn);
+
+    playAgainBtn.addEventListener("click", () => {
+        resetGame();
+    });
+}
+
+
+const resetGame = () => {
+    userScore = 0;
+    compScore = 0;
+    userScorePara.innerText = userScore;
+    compScorePara.innerText = compScore;
+    msg.innerText = "Play your move";
+    msg.style.backgroundColor = "black";
+    choices.forEach(choice => {
+        choice.style.pointerEvents = "auto";
+    });
+    const playAgainBtn = document.querySelector(".play-again-btn");
+    if (playAgainBtn) {
+        playAgainBtn.remove();
     }
 }
 
