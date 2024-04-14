@@ -43,7 +43,7 @@ const showWinner = (userWin, userChoice, compChoice) => {
             disableChoices();
             showPlayAgain();
         } else {
-            msg.innerText = `Oops! You Lose! Comp Win! ${compChoice} beats your ${userChoice}`;
+            msg.innerText = `Oops! You Lose! ${compChoice} beats your ${userChoice}`;
         }
         msg.style.backgroundColor = "red";
     }
