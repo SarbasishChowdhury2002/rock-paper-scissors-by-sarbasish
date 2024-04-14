@@ -5,6 +5,7 @@
     background-color: whitesmoke;
 }
 
+
 h1{
     background-color: black;
     color: whitesmoke;
@@ -56,6 +57,9 @@ img {
 
 .msg-container {
     margin-top: 4rem;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
 }
 
 #msg {
@@ -65,4 +69,63 @@ img {
     color: whitesmoke;
     padding: 0.8rem;
     border-radius: 1.5rem;
+}
+
+
+/* Add styles for the "Play Again" button */
+.play-again-btn {
+    display: block; 
+    margin-top: 2rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: center;
+}
+
+.play-again-btn:hover {
+    background-color: #45a049;
+}
+
+
+
+
+
+@media only screen and (max-width: 768px) {
+    .choices {
+        margin-top: 9rem;
+        flex-direction: row;
+        gap: 1.5rem;
+        justify-content: center; 
+    }
+    
+    .choice {
+        height: 120px;
+        width: 120px;
+    }
+    
+    img {
+        height: 100px;
+        width: 100px;
+    }
+    
+    .score-board {
+        margin-top: 5rem;
+        display: flex;
+        gap: 2.5rem;
+        align-items: center; 
+    }
+
+    #msg {
+        font-size: 1rem;
+        padding: 0.5rem;
+        border-radius: 1.2rem;
+    }
+
+    .msg-container {
+        margin-top: 5rem;
+    }
 }
